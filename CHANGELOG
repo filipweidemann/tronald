@@ -1,0 +1,16 @@
+Changelog
+=========
+
+
+(unreleased)
+------------
+
+Changes
+~~~~~~~
+- WIP: Refactor cli config from shelve to classes. [Filip Weidemann]
+
+Other
+~~~~~
+- V0.1.2. [Filip Weidemann]
+
+
