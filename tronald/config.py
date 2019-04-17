@@ -1,8 +1,28 @@
 import os
-import shelve
+import configparser
 
 
-SHELVE_NAME = "{}/tronald.conf".format(os.path.dirname(__file__))
+DOTFILE_NAME = "{}/tronald.ini".format(os.path.expanduser("~"))
+
+
+class TronaldConfig:
+    def __init__(self):
+        config = configparser.ConfigParser()
+        config.read(DOTFILE_NAME)
+
+        if not "tronald" in config.sections():
+            config["tronald"] = {
+                "KeyPath": "",
+                "DefaultDatabase": "",
+                "Prefix": "",
+                "Suffix": "",
+            }
+
+            with open(DOTFILE_NAME, "w") as configfile:
+                config.write(configfile)
+            config.read(DOTFILE_NAME)
+
+        self.configuration = config["tronald"]
 
 
 class Config:
@@ -21,7 +41,7 @@ class Config:
         self.ssh_user = ssh_user
         self.target = target
 
-        with shelve.open(SHELVE_NAME) as settings:
+        with shelve.open(DOTFILE_NAME) as settings:
             self.db_name = settings["db_name"]
             self.prefix = settings["prefix"]
             self.suffix = settings["suffix"]

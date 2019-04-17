@@ -1,9 +1,10 @@
 import click
 import shelve
 import inquirer
+import configparser
 from time import sleep
 
-from .config import Config, SHELVE_NAME
+from .config import Config, DOTFILE_NAME
 from .controllers import RemoteController, LocalController
 from .initial import (
     KEY_PATH_SETUP,
@@ -24,8 +25,8 @@ def cli():
 @click.option("--suffix", "suffix")
 @click.option("--key", "key_path")
 @click.option("--db", "db_name")
-def set_prefix(prefix, suffix, key_path, db_name):
-    with shelve.open(SHELVE_NAME) as settings:
+def configure(prefix, suffix, key_path, db_name):
+    with shelve.open(DOTFILE_NAME) as settings:
         if not prefix and not suffix and not key_path and not db_name:
             click.echo("Current settings:\n")
             for key, value in settings.items():

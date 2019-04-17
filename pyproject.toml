@@ -10,6 +10,7 @@ click = "^7.0"
 pylint = "^2.3"
 paramiko = "^2.4"
 inquirer = "^2.5"
+gitchangelog = "^3.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"

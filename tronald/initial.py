@@ -1,7 +1,12 @@
 import os
 import shelve
 import inquirer
-from .config import SHELVE_NAME
+import configparser
+from .config import DOTFILE_NAME, TronaldConfig
+
+import pdb
+
+pdb.set_trace()
 
 
 KEY_PATH_SETUP = [
@@ -36,26 +41,49 @@ CONTAINER_SUFFIX = [
 
 
 def perform_initial_setup():
-    with shelve.open(SHELVE_NAME) as settings:
-        if not "key_path" in settings:
-            answer = inquirer.prompt(KEY_PATH_SETUP)
-            key_path = answer["key_path"]
+    try:
+        file = open(DOTFILE_NAME, "r", encoding="ISO-8859-1")
+    except FileNotFoundError:
+        return
 
-            if key_path.startswith("~"):
-                key_location = os.path.expanduser(key_path)
-            else:
-                key_location = key_path
+    config = configparser.ConfigParser()
+    config.read(file)
 
-            settings["key_path"] = key_location
+    if not "tronald:general" in config.sections():
+        questions = [
+            KEY_PATH_SETUP,
+            DEFAULT_DATABASE_SETUP,
+            CONTAINER_PREFIX,
+            CONTAINER_SUFFIX,
+        ]
+        answers = inquirer.prompt(questions)
 
-        if not "db_name" in settings:
-            answer = inquirer.prompt(DEFAULT_DATABASE_SETUP)
-            settings["db_name"] = answer["db_name"]
+        config["tronald:general"]["KeyPath"] = answers["key_path"]
+        config["tronald:general"]["DefaultDatabase"] = answers["db_name"]
+        config["tronald:general"]["Prefix"] = answers["prefix"]
+        config["tronald:general"]["Suffix"] = answers["suffix"]
+        config.write(file)
+        return
 
-        if not "prefix" in settings:
-            answer = inquirer.prompt(CONTAINER_PREFIX)
-            settings["prefix"] = answer["prefix"]
+    if not "key_path" in config["tronald:general"]:
+        answer = inquirer.prompt(KEY_PATH_SETUP)
+        key_path = answer["key_path"]
 
-        if not "suffix" in settings:
-            answer = inquirer.prompt(CONTAINER_SUFFIX)
-            settings["suffix"] = answer["suffix"]
+        if key_path.startswith("~"):
+            key_location = os.path.expanduser(key_path)
+        else:
+            key_location = key_path
+
+        config["tronald:general"]["KeyPath"] = key_location
+
+    if not "DefaultDatabase" in config["tronald:general"]:
+        answer = inquirer.prompt(DEFAULT_DATABASE_SETUP)
+        config["tronald:general"]["DefaultDatabase"] = answer["db_name"]
+
+    if not "Prefix" in config["tronald:general"]:
+        answer = inquirer.prompt(CONTAINER_PREFIX)
+        config["tronald:general"]["Prefix"] = answer["prefix"]
+
+    if not "suffix" in config["tronald:general"]:
+        answer = inquirer.prompt(CONTAINER_SUFFIX)
+        config["tronald:general"]["Suffix"] = answer["suffix"]
