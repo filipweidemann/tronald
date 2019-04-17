@@ -1,0 +1,6 @@
+.vscode
+*.db
+*.sql
+**__cache**
+**__pycache**
+**egg-info
