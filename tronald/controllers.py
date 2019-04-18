@@ -23,20 +23,10 @@ class RemoteController:
             username=self.config.ssh_user,
             key_filename=self.config.key_path,
         )
-        channel = get_channel(self.client)
-        channel.exec_command(build_postgres_dump(self.config))
-
-        while not channel.exit_status_ready():
-            time.sleep(0.5)
-
-        sftp = self.client.open_sftp()
-        sftp.get(self.config.dump_name, self.config.target)
-
-        channel = get_channel(self.client)
-        channel.exec_command(remove_remote_dump(self.config))
-
-        sftp.close()
-        self.client.close()
+        stdout_stream = self.client.exec_command(build_postgres_dump(self.config))[1]
+        stdout = stdout_stream.read().decode("utf-8")
+        with open(self.config.target, "w") as output_file:
+            output_file.write(stdout)
 
 
 class LocalController:

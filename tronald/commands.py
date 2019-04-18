@@ -2,8 +2,8 @@ import os
 
 
 def build_postgres_dump(config):
-    return "docker exec -t {} pg_dump {} -c -U {} > {}".format(
-        config.container, config.db_name, config.postgres_user, config.dump_name
+    return "docker exec -t {} pg_dump {} -c -U {}".format(
+        config.container, config.db_name, config.postgres_user
     )
 
 
