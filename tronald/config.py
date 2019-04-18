@@ -24,8 +24,23 @@ class TronaldConfig:
 
         self.configuration = config["tronald"]
 
+    def get_value(self, key):
+        config = configparser.ConfigParser()
+        config.read(DOTFILE_NAME)
+        if not key in config["tronald"]:
+            return None
+        return config["tronald"][key]
 
-class Config:
+    def set_value(self, key, value):
+        config = configparser.ConfigParser()
+        config.read(DOTFILE_NAME)
+        config["tronald"][key] = value
+        with open(DOTFILE_NAME, "w") as configfile:
+            config.write(configfile)
+            return config
+
+
+class MetaData:
     def __init__(
         self,
         host=None,
@@ -35,17 +50,16 @@ class Config:
         dump_name=None,
         target=None,
     ):
+        config = TronaldConfig()
         self.host = host
         self.container = container
         self.postgres_user = postgres_user
         self.ssh_user = ssh_user
         self.target = target
-
-        with shelve.open(DOTFILE_NAME) as settings:
-            self.db_name = settings["db_name"]
-            self.prefix = settings["prefix"]
-            self.suffix = settings["suffix"]
-            self.key_path = settings["key_path"]
+        self.db_name = config.get_value("defaultdatabase")
+        self.prefix = config.get_value("prefix")
+        self.suffix = config.get_value("suffix")
+        self.key_path = config.get_value("keypath")
 
     @property
     def postgres_user(self):

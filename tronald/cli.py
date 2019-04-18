@@ -4,7 +4,7 @@ import inquirer
 import configparser
 from time import sleep
 
-from .config import Config, DOTFILE_NAME
+from .config import MetaData, TronaldConfig, DOTFILE_NAME
 from .controllers import RemoteController, LocalController
 from .initial import (
     KEY_PATH_SETUP,
@@ -26,23 +26,24 @@ def cli():
 @click.option("--key", "key_path")
 @click.option("--db", "db_name")
 def configure(prefix, suffix, key_path, db_name):
-    with shelve.open(DOTFILE_NAME) as settings:
-        if not prefix and not suffix and not key_path and not db_name:
-            click.echo("Current settings:\n")
-            for key, value in settings.items():
-                click.echo("{}: {}".format(key, value))
+    config = TronaldConfig()
+    if not prefix and not suffix and not key_path and not db_name:
+        click.echo("Current settings:\n")
+        for key, value in config.configuration.items():
+            click.echo("{}: {}".format(key, value))
+        return
 
-        if prefix:
-            settings["prefix"] = prefix
+    if key_path:
+        config.set_value("keypath", key_path)
 
-        if suffix:
-            settings["suffix"] = suffix
+    if db_name:
+        config.set_value("defaultdatabase", db_name)
 
-        if key_path:
-            settings["key_path"] = key_path
+    if prefix:
+        config.set_value("prefix", prefix)
 
-        if db_name:
-            settings["db_name"] = db_name
+    if suffix:
+        config.set_value("suffix", suffix)
 
 
 @cli.command()
@@ -52,15 +53,15 @@ def configure(prefix, suffix, key_path, db_name):
 @click.argument("host")
 @click.argument("target")
 def dump(host, container, ssh_user, postgres_user, target):
-    configuration_parameters = {
+    meta_params = {
         "host": host,
         "ssh_user": ssh_user,
         "postgres_user": postgres_user,
         "container": container,
         "target": target,
     }
-    config = Config(**configuration_parameters)
-    controller = RemoteController(config)
+    meta_data = MetaData(**meta_params)
+    controller = RemoteController(meta_data)
     controller.dump_and_transfer()
 
 

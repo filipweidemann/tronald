@@ -4,10 +4,6 @@ import inquirer
 import configparser
 from .config import DOTFILE_NAME, TronaldConfig
 
-import pdb
-
-pdb.set_trace()
-
 
 KEY_PATH_SETUP = [
     inquirer.Text(
@@ -41,31 +37,9 @@ CONTAINER_SUFFIX = [
 
 
 def perform_initial_setup():
-    try:
-        file = open(DOTFILE_NAME, "r", encoding="ISO-8859-1")
-    except FileNotFoundError:
-        return
+    config = TronaldConfig()
 
-    config = configparser.ConfigParser()
-    config.read(file)
-
-    if not "tronald:general" in config.sections():
-        questions = [
-            KEY_PATH_SETUP,
-            DEFAULT_DATABASE_SETUP,
-            CONTAINER_PREFIX,
-            CONTAINER_SUFFIX,
-        ]
-        answers = inquirer.prompt(questions)
-
-        config["tronald:general"]["KeyPath"] = answers["key_path"]
-        config["tronald:general"]["DefaultDatabase"] = answers["db_name"]
-        config["tronald:general"]["Prefix"] = answers["prefix"]
-        config["tronald:general"]["Suffix"] = answers["suffix"]
-        config.write(file)
-        return
-
-    if not "key_path" in config["tronald:general"]:
+    if not config.get_value("keypath"):
         answer = inquirer.prompt(KEY_PATH_SETUP)
         key_path = answer["key_path"]
 
@@ -74,16 +48,16 @@ def perform_initial_setup():
         else:
             key_location = key_path
 
-        config["tronald:general"]["KeyPath"] = key_location
+        config.set_value("keypath", key_location)
 
-    if not "DefaultDatabase" in config["tronald:general"]:
+    if not config.get_value("defaultdatabase"):
         answer = inquirer.prompt(DEFAULT_DATABASE_SETUP)
-        config["tronald:general"]["DefaultDatabase"] = answer["db_name"]
+        config.set_value("defaultdatabase", answer["db_name"])
 
-    if not "Prefix" in config["tronald:general"]:
+    if not config.get_value("prefix"):
         answer = inquirer.prompt(CONTAINER_PREFIX)
-        config["tronald:general"]["Prefix"] = answer["prefix"]
+        config.set_value("prefix", answer["prefix"])
 
-    if not "suffix" in config["tronald:general"]:
+    if not config.get_value("suffix"):
         answer = inquirer.prompt(CONTAINER_SUFFIX)
-        config["tronald:general"]["Suffix"] = answer["suffix"]
+        config.set_value("suffix", answer["suffix"])
