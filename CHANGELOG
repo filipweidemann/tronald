@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-(unreleased)
-------------
+v0.3 (2019-04-18)
+-----------------
 
 Changes
 ~~~~~~~
@@ -20,6 +20,11 @@ Fix
 
 Other
 ~~~~~
+- Bump version for 0.3 release. [Filip Weidemann]
+- Merge pull request #1 from mvsde/master. [Filip Weidemann]
+
+  CLI prompt typo fixes
+- CLI prompt typo fixes. [Fynn Becker]
 - Update Changelog. [Filip Weidemann]
 - Update Changelog. [Filip Weidemann]
 
