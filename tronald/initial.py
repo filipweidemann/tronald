@@ -8,7 +8,7 @@ from .config import DOTFILE_NAME, TronaldConfig
 KEY_PATH_SETUP = [
     inquirer.Text(
         "key_path",
-        "Please enter the absolute path to your preferred RSA private key",
+        "Please enter the path to your preferred RSA private key",
         default="~/.ssh/id_rsa",
     )
 ]
@@ -16,7 +16,7 @@ KEY_PATH_SETUP = [
 DEFAULT_DATABASE_SETUP = [
     inquirer.Text(
         "db_name",
-        "Please enter the default database name to pull dumps from.",
+        "Please enter the default database name to pull dumps from",
         default="app",
     )
 ]
@@ -24,14 +24,14 @@ DEFAULT_DATABASE_SETUP = [
 CONTAINER_PREFIX = [
     inquirer.Text(
         "prefix",
-        "If there are common container prefixes, please provide them for container name derivation.",
+        "If there are common container prefixes, please provide them for container name derivation",
     )
 ]
 
 CONTAINER_SUFFIX = [
     inquirer.Text(
         "suffix",
-        "If there are common container suffixes, please provide them for container name derivation.",
+        "If there are common container suffixes, please provide them for container name derivation",
     )
 ]
 
