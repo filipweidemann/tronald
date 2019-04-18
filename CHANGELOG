@@ -5,12 +5,22 @@ Changelog
 (unreleased)
 ------------
 
+Changes
+~~~~~~~
+- Dump now uses the stdout data. [Filip Weidemann]
+
+  This change implies that instead of creating the file server-side,
+  instantiating an FTP connection and downloading the file, we are
+  now able to use the stdout stream directly and redirect it into the
+  target file client-side.
+
 Fix
 ~~~
 - Move black and pylint to dev dependencies. [Filip Weidemann]
 
 Other
 ~~~~~
+- Update Changelog. [Filip Weidemann]
 - Update Changelog. [Filip Weidemann]
 
 
