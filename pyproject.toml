@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tronald"
-version = "0.1.2"
+version = "0.2"
 description = ""
 authors = ["Filip Weidemann <filip.weidemann@outlook.de>"]
 
