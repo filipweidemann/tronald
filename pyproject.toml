@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tronald"
-version = "0.2"
+version = "0.3"
 description = "CLI for getting Postgres dumps from remote containers."
 authors = ["Filip Weidemann <filip.weidemann@outlook.de>"]
 
