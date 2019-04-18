@@ -15,7 +15,7 @@ python-versions = "*"
 version = "0.24.0"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "An abstract syntax tree for Python with inference support."
 name = "astroid"
 optional = false
@@ -101,7 +101,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "7.0"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "Cross-platform colored terminal text."
 marker = "sys_platform == \"win32\""
 name = "colorama"
@@ -123,7 +123,7 @@ cffi = ">=1.8,<1.11.3 || >1.11.3"
 six = ">=1.4.1"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "gitchangelog generates a changelog thanks to git log."
 name = "gitchangelog"
 optional = false
@@ -143,7 +143,7 @@ blessings = ">=1.7"
 readchar = ">=2.0.0"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "A Python utility / library to sort Python imports."
 name = "isort"
 optional = false
@@ -151,7 +151,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "4.3.17"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "A fast and thorough lazy object proxy."
 name = "lazy-object-proxy"
 optional = false
@@ -159,7 +159,7 @@ python-versions = "*"
 version = "1.3.1"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "McCabe checker, plugin for flake8"
 name = "mccabe"
 optional = false
@@ -221,7 +221,7 @@ python-versions = "*"
 version = "2.19"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "python code static checker"
 name = "pylint"
 optional = false
@@ -289,16 +289,16 @@ python-versions = "*"
 version = "0.10.0"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "a fork of Python 2 and 3 ast modules with type comment support"
 marker = "implementation_name == \"cpython\""
 name = "typed-ast"
 optional = false
 python-versions = "*"
-version = "1.3.1"
+version = "1.3.4"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "Module for decorators, wrappers and monkey patching."
 name = "wrapt"
 optional = false
@@ -306,7 +306,7 @@ python-versions = "*"
 version = "1.11.1"
 
 [metadata]
-content-hash = "b1cfc8bbd2c4827056169c847157c40176a555b0cd010cdea7984207814d350b"
+content-hash = "e43462742ca199d3b7bbf8e079f07a1afb0a22b676a70d2b1153c46d72d464db"
 python-versions = "^3.6"
 
 [metadata.hashes]
@@ -339,5 +339,5 @@ pytest = ["3f193df1cfe1d1609d4c583838bea3d532b18d6160fd3f55c9447fdca30848ec", "e
 readchar = ["3ac34aab28563bc895f73233d5c08b28f951ca190d5850b8d4bec973132a8dca", "ed00b7a49bb12f345319d9fa393f289f03670310ada2beb55e8c3f017c648f1e"]
 six = ["3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c", "d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"]
 toml = ["229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c", "235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e", "f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"]
-typed-ast = ["035a54ede6ce1380599b2ce57844c6554666522e376bd111eb940fbc7c3dad23", "037c35f2741ce3a9ac0d55abfcd119133cbd821fffa4461397718287092d9d15", "049feae7e9f180b64efacbdc36b3af64a00393a47be22fa9cb6794e68d4e73d3", "19228f7940beafc1ba21a6e8e070e0b0bfd1457902a3a81709762b8b9039b88d", "2ea681e91e3550a30c2265d2916f40a5f5d89b59469a20f3bad7d07adee0f7a6", "3a6b0a78af298d82323660df5497bcea0f0a4a25a0b003afd0ce5af049bd1f60", "5385da8f3b801014504df0852bf83524599df890387a3c2b17b7caa3d78b1773", "606d8afa07eef77280c2bf84335e24390055b478392e1975f96286d99d0cb424", "69245b5b23bbf7fb242c9f8f08493e9ecd7711f063259aefffaeb90595d62287", "6f6d839ab09830d59b7fa8fb6917023d8cb5498ee1f1dbd82d37db78eb76bc99", "730888475f5ac0e37c1de4bd05eeb799fdb742697867f524dc8a4cd74bcecc23", "9819b5162ffc121b9e334923c685b0d0826154e41dfe70b2ede2ce29034c71d8", "9e60ef9426efab601dd9aa120e4ff560f4461cf8442e9c0a2b92548d52800699", "af5fbdde0690c7da68e841d7fc2632345d570768ea7406a9434446d7b33b0ee1", "b64efdbdf3bbb1377562c179f167f3bf301251411eb5ac77dec6b7d32bcda463", "bac5f444c118aeb456fac1b0b5d14c6a71ea2a42069b09c176f75e9bd4c186f6", "bda9068aafb73859491e13b99b682bd299c1b5fd50644d697533775828a28ee0", "d659517ca116e6750101a1326107d3479028c5191f0ecee3c7203c50f5b915b0", "eddd3fb1f3e0f82e5915a899285a39ee34ce18fd25d89582bc89fc9fb16cd2c6"]
+typed-ast = ["04894d268ba6eab7e093d43107869ad49e7b5ef40d1a94243ea49b352061b200", "16616ece19daddc586e499a3d2f560302c11f122b9c692bc216e821ae32aa0d0", "2af80a373af123d0b9f44941a46df67ef0ff7a60f95872412a145f4500a7fc99", "2ea99c029ebd4b5a308d915cc7fb95b8e1201d60b065450d5d26deb65d3f2bc1", "56b6978798502ef66625a2e0f80cf923da64e328da8bbe16c1ff928c70c873de", "644ee788222d81555af543b70a1098f2025db38eaa99226f3a75a6854924d4db", "64cf762049fc4775efe6b27161467e76d0ba145862802a65eefc8879086fc6f8", "68c362848d9fb71d3c3e5f43c09974a0ae319144634e7a47db62f0f2a54a7fa7", "6c1f3c6f6635e611d58e467bf4371883568f0de9ccc4606f17048142dec14a1f", "b213d4a02eec4ddf622f4d2fbc539f062af3788d1f332f028a2e19c42da53f15", "c9d414512eaa417aadae7758bc118868cd2396b0e6138c1dd4fda96679c079d3", "fb96a6e2c11059ecf84e6741a319f93f683e440e341d4489c9b161eca251cf2a"]
 wrapt = ["4aea003270831cceb8a90ff27c4031da6ead7ec1886023b80ce0dfe0adf61533"]
