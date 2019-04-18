@@ -2,6 +2,18 @@ Changelog
 =========
 
 
+(unreleased)
+------------
+
+Fix
+~~~
+- Move black and pylint to dev dependencies. [Filip Weidemann]
+
+Other
+~~~~~
+- Update Changelog. [Filip Weidemann]
+
+
 v0.2 (2019-04-18)
 -----------------
 
