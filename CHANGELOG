@@ -2,15 +2,18 @@ Changelog
 =========
 
 
-(unreleased)
-------------
+v0.2 (2019-04-18)
+-----------------
 
 Changes
 ~~~~~~~
+- Deprecate shelve in favor of TronaldConfig class. [Filip Weidemann]
 - WIP: Refactor cli config from shelve to classes. [Filip Weidemann]
 
 Other
 ~~~~~
+- Prepare for v0.2. [Filip Weidemann]
+- Update changelog. [Filip Weidemann]
 - V0.1.2. [Filip Weidemann]
 
 
