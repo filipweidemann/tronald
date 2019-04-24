@@ -23,6 +23,17 @@ class RemoteController:
             username=self.config.ssh_user,
             key_filename=self.config.key_path,
         )
+        
+
+        # check if there is a container matching the host name
+        host = self.config.host
+        name_formatter = '"{{.Names}}"'
+        container_query = self.client.exec_command(f'docker ps --filter name={host} --format {name_formatter}')[1] 
+        queried_container = container_query.read().decode("utf-8").strip()
+       
+        if host in queried_container:
+            self.config.container = queried_container
+
         stdout_stream = self.client.exec_command(build_postgres_dump(self.config))[1]
         stdout = stdout_stream.read().decode("utf-8")
         with open(self.config.target, "w") as output_file:

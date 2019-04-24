@@ -6,7 +6,6 @@ def build_postgres_dump(config):
         config.container, config.db_name, config.postgres_user
     )
 
-
 def remove_remote_dump(config):
     return "rm {}".format(config.dump_name)
 

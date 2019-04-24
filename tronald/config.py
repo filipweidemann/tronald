@@ -52,7 +52,7 @@ class MetaData:
     ):
         config = TronaldConfig()
         self.host = host
-        self.container = container
+        self._container = container
         self.postgres_user = postgres_user
         self.ssh_user = ssh_user
         self.target = target
