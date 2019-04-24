@@ -54,10 +54,3 @@ def perform_initial_setup():
         answer = inquirer.prompt(DEFAULT_DATABASE_SETUP)
         config.set_value("defaultdatabase", answer["db_name"])
 
-    if not config.get_value("prefix"):
-        answer = inquirer.prompt(CONTAINER_PREFIX)
-        config.set_value("prefix", answer["prefix"])
-
-    if not config.get_value("suffix"):
-        answer = inquirer.prompt(CONTAINER_SUFFIX)
-        config.set_value("suffix", answer["suffix"])
