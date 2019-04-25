@@ -2,6 +2,39 @@ Changelog
 =========
 
 
+v0.3.1 (2019-04-25)
+-------------------
+
+Changes
+~~~~~~~
+- Setting prefix/suffix not enforced anymore. [Filip Weidemann]
+
+  With the latest changes to the remote container querying,
+  there is no explicit need to enforce setting these values
+  anymore.
+
+  If there are issues and you or your team are using prefixes/suffixes
+  like we do, please consider adding them nonetheless to mitigate errors.
+
+Other
+~~~~~
+- Bump version. [Filip Weidemann]
+
+  !minor
+- Add README. [Filip Weidemann]
+
+  !minor
+- Feat: Dynamically query the remote for matches. [Filip Weidemann]
+
+  Tronald will now take the specified host name and
+  dynamically query the remote docker host for containers
+  with that name in them, ignoring the need for explicitly setting
+  the prefix and suffix values inside the tronald.ini or via the CLI.
+
+  This is currently WIP, and assumed that there the returned matching
+  container names are either 0 or 1.
+
+
 v0.3 (2019-04-18)
 -----------------
 
