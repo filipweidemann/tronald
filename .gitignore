@@ -6,3 +6,4 @@ build
 **__cache**
 **__pycache**
 **egg-info
+pip-wheel-metadata
