@@ -7,7 +7,7 @@ with open("README.md", "r") as readme:
 
 setuptools.setup(
     name="tronald",
-    version="0.3.1",
+    version="0.4.0",
     author="Filip Weidemann",
     author_email="filip.weidemann@outlook.de",
     description="CLI for getting remote PostgreSQL dumps out of containers onto your machine.",
