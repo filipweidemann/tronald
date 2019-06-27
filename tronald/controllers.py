@@ -23,14 +23,15 @@ class RemoteController:
             username=self.config.ssh_user,
             key_filename=self.config.key_path,
         )
-        
 
         # check if there is a container matching the host name
         host = self.config.host
         name_formatter = '"{{.Names}}"'
-        container_query = self.client.exec_command(f'docker ps --filter name={host} --format {name_formatter}')[1] 
+        container_query = self.client.exec_command(
+            f"docker ps --filter name={host} --format {name_formatter}"
+        )[1]
         queried_container = container_query.read().decode("utf-8").strip()
-       
+
         if host in queried_container:
             self.config.container = queried_container
 
@@ -41,8 +42,9 @@ class RemoteController:
 
 
 class LocalController:
-    def __init__(self, dump_path, container_identifier, postgres_user):
+    def __init__(self, dump_path, container_identifier, postgres_user, postgres_db):
         self.postgres_user = postgres_user
+        self.postgres_db = postgres_db
         self.dump_path = dump_path
         self.container = container_identifier
 
@@ -51,5 +53,6 @@ class LocalController:
             "dump_path": self.dump_path,
             "container_identifier": self.container,
             "postgres_user": self.postgres_user,
+            "postgres_db": self.postgres_db,
         }
         import_dump_to_local_container(**configuration_parameters)

@@ -50,13 +50,15 @@ def configure(prefix, suffix, key_path, db_name):
 @click.option("--container", "container")
 @click.option("--ssh-user", "ssh_user")
 @click.option("--postgres-user", "postgres_user")
+@click.option("--postgres-db", "postgres_db")
 @click.argument("host")
 @click.argument("target")
-def dump(host, container, ssh_user, postgres_user, target):
+def dump(host, container, ssh_user, postgres_user, postgres_db, target):
     meta_params = {
         "host": host,
         "ssh_user": ssh_user,
         "postgres_user": postgres_user,
+        "postgres_db": postgres_db or "app",
         "container": container,
         "target": target,
     }
@@ -69,11 +71,13 @@ def dump(host, container, ssh_user, postgres_user, target):
 @click.argument("dump_path")
 @click.argument("container_identifier")
 @click.option("--postgres-user", "postgres_user")
-def import_dump(dump_path, container_identifier, postgres_user):
+@click.option("--postgres-db", "postgres_db")
+def import_dump(dump_path, container_identifier, postgres_user, postgres_db):
     configuration_parameters = {
         "dump_path": dump_path,
         "container_identifier": container_identifier,
         "postgres_user": postgres_user or "django",
+        "postgres_db": postgres_db or "app",
     }
     controller = LocalController(**configuration_parameters)
     controller.import_dump()

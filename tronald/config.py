@@ -47,6 +47,7 @@ class MetaData:
         container=None,
         ssh_user=None,
         postgres_user=None,
+        postgres_db="app",
         dump_name=None,
         target=None,
     ):
@@ -54,9 +55,15 @@ class MetaData:
         self.host = host
         self._container = container
         self.postgres_user = postgres_user
+        self.postgres_db = postgres_db
         self.ssh_user = ssh_user
         self.target = target
-        self.db_name = config.get_value("defaultdatabase")
+
+        if self.postgres_db:
+            self.db_name = self.postgres_db
+        else:
+            self.db_name = config.get_value("defaultdatabase")
+
         self.prefix = config.get_value("prefix")
         self.suffix = config.get_value("suffix")
         self.key_path = config.get_value("keypath")
